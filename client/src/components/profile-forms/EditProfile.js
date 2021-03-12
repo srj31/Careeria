@@ -47,18 +47,7 @@ const EditProfile = ({
     if (!loading) {
       toggleSocialInputs(profile.social);
     }
-  }, [
-    getCurrentProfile,
-    loading,
-    profile.bio,
-    profile.company,
-    profile.githubusername,
-    profile.location,
-    profile.skills,
-    profile.social,
-    profile.status,
-    profile.website,
-  ]);
+  }, []);
 
   const {
     company,

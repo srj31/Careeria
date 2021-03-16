@@ -1,6 +1,6 @@
 const express = require("express");
-const request = require('request');
-const config = require('config');
+const request = require("request");
+const config = require("config");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
@@ -292,19 +292,74 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/profile/interest
+// @desc    Add profile interest
+// @access  Private
+router.put(
+  "/interest",
+  [
+    auth,
+    [
+      check("title", "Title is required").not().isEmpty(),
+      check("description", "Description is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { title, description } = req.body;
+
+    const newInterest = {
+      title,
+      description,
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.interest.unshift(newInterest);
+      await profile.save();
+      res.json(profile);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route   DELETE api/profile/interest/:int_id
+// @desc    Delete interest from profile
+// @access  Private
+router.delete("/interest/:int_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    // Filter interest
+    profile.interest = profile.interest.filter(
+      (int) => int._id.toString() !== req.params.int_id
+    );
+    await profile.save();
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   GET api/profile/github/:username
 // @desc    Get user repos from Github
 // @access  Public
-router.get('/github/:username', (req, res) => {
+router.get("/github/:username", (req, res) => {
   try {
     const options = {
       uri: `https://api.github.com/users/${req.params.username}/repos?
       per_page=5
       &sort=created:asc
-      &client_id=${config.get('githubClientId')}
-      &client_secret=${config.get('githubSecret')}`,
-      method: 'GET',
-      headers: { 'user-agent': 'node.js' },
+      &client_id=${config.get("githubClientId")}
+      &client_secret=${config.get("githubSecret")}`,
+      method: "GET",
+      headers: { "user-agent": "node.js" },
     };
 
     request(options, (error, response, body) => {
@@ -312,14 +367,16 @@ router.get('/github/:username', (req, res) => {
         console.error(error);
       }
       if (response.statusCode !== 200) {
-        return res.status(404).json({ msg: 'No github profile found' });
+        return res.status(404).json({ msg: "No github profile found" });
       }
       res.json(JSON.parse(body));
     });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
 module.exports = router;
+
+// Todo  ADD interest

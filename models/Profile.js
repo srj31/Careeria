@@ -29,6 +29,19 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
   },
 
+  interest: [
+    {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+
   experience: [
     {
       title: {

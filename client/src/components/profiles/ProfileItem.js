@@ -12,8 +12,8 @@ const ProfileItem = ({
   },
 }) => {
   return (
-    <div className='profile bg-light'>
-      <img className='round-img' src={avatar} alt='' />
+    <div className='profile' style={{backgroundImage: "linear-gradient(90deg, #20B2AA, white)"}}>
+      <img className='round-img' src={avatar} alt='' style={{border: "2px solid white"}}/>
       <div>
         <h2>{name}</h2>
         <p>

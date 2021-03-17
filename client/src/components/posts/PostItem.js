@@ -5,6 +5,8 @@ import Moment from "react-moment";
 import { connect } from "react-redux";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 
+import './PostItem.css';
+
 const PostItem = ({
   showActions,
   auth,

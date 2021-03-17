@@ -309,6 +309,7 @@ button {
   width: 100%;
   top: 0;
   border-bottom: solid 1px var(--primary-color);
+  box-shadow: 2px 2px 20px #20B2AA;
   opacity: 0.9;
 }
 
@@ -324,6 +325,7 @@ button {
 
 .navbar a:hover {
   color: var(--primary-color);
+  text-shadow: 2px 2px 20px #20B2AA;
 }
 
 .navbar .welcome span {

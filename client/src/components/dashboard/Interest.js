@@ -13,7 +13,7 @@ const Interest = ({ interest, deleteInterest }) => {
           className='btn btn-danger'
           onClick={() => deleteInterest(int._id)}
         >
-          Delete
+          <i class="fas fa-times"></i>
         </button>
       </td>
     </tr>
@@ -26,7 +26,7 @@ const Interest = ({ interest, deleteInterest }) => {
           <tr>
             <th>Title</th>
             <th className='hide-sm'>Description</th>
-            <th />
+            <th className='hide-sm'>Delete?</th>
           </tr>
         </thead>
         <tbody>{interests}</tbody>

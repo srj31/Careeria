@@ -1,0 +1,36 @@
+input[type="text"] {
+  color: #20B2AA ;
+  transition: 0.5s;
+  outline: none;
+  border-bottom: 1px solid #747474;
+
+}
+
+input[type=text]:focus {
+  border-bottom: 3px solid #20B2AA !important;
+}
+
+
+input[type="password"] {
+  color: #20B2AA;
+  transition: 0.5s;
+  outline: none;
+  border-bottom: 1px solid #747474;
+
+}
+
+input[type=password]:focus {
+  border-bottom: 3px solid #20B2AA !important;
+}
+
+input[type="email"] {
+  color: #20B2AA;
+  transition: 0.5s;
+  outline: none;
+  border-bottom: 1px solid #747474;
+
+}
+
+input[type=email]:focus {
+  border-bottom: 3px solid #20B2AA !important;
+}

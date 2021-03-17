@@ -1,0 +1,9 @@
+.profile{
+  transition: all .2s ease-in-out;
+  box-shadow: 2px 2px 20px #20B2AA;
+}
+
+.profile:hover{
+  transform: perspective(20px) translateZ(1px);
+  transition-duration: 0.5s;
+}

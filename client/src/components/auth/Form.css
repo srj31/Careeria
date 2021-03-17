@@ -1,3 +1,17 @@
+/* .form {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+} */
+
 input[type="text"] {
   color: #20B2AA ;
   transition: 0.5s;
